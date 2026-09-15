@@ -9,6 +9,7 @@
     <title>Happy Birthday</title>
 </head>
 <body>
+    <div id="floating-container"></div>
     <div class="passcode">
         <form class="card-passcode">
             <h2>Countdown to the Big Day</h2>
@@ -45,6 +46,19 @@
         moments, endless smiles, and everything <br>
         your heart wishes for<i class="fa-solid fa-ribbon"></i></p>
         <audio src="birthday.mp3"></audio>
+    </div>
+    <div class="cake-section">
+        <div class="cake">
+            <div class="plate"></div>
+            <div class="layer layer-bottom"></div>
+            <div class="layer layer-middle"></div>
+            <div class="layer layer-top"></div>
+            <div class="icing"></div>
+            <div class="candle" id="candle" onclick="extinguishCandle()">
+            <div class="flame" id="flame"></div>
+        </div>
+        </div>
+        <p class="cake-instruction" id="cake-status">Press the candle<i class="fa-solid fa-fire-flame-curved"></i></p>
     </div>
     <div class="wish-cards">
         <div class="card card-1">

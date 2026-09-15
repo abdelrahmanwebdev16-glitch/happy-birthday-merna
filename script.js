@@ -69,3 +69,67 @@ function updateCountdown() {
 // تشغيل العداد كل ثانية
 setInterval(updateCountdown, 1000);
 updateCountdown(); // تشغيل فوري أول ما الصفحة تفتح
+
+
+// 1. إنشاء وتطير البلونات والقلوب في الخلفية
+function createFloatingElement() {
+  const container = document.getElementById('floating-container');
+  if (!container) return;
+
+  const element = document.createElement('div');
+  const isHeart = Math.random() > 0.5;
+  
+  element.classList.add(isHeart ? 'heart' : 'balloon');
+  element.innerText = isHeart ? '❤️' : '🎈';
+
+  // موقع عشوائي أفقي وزمن طيران عشوائي
+  element.style.left = Math.random() * 100 + 'vw';
+  element.style.animationDuration = Math.random() * 3 + 4 + 's'; // بين 4 لـ 7 ثوانٍ
+  element.style.fontSize = Math.random() * 15 + 20 + 'px'; // أحجام مختلفة
+
+  // فرقعة العنصر عند الضغط عليه
+  element.addEventListener('click', () => {
+    element.style.transform = 'scale(1.8)';
+    element.style.opacity = '0';
+    setTimeout(() => {
+      element.remove();
+    }, 200);
+  });
+
+  container.appendChild(element);
+
+  // حذف العنصر بعد انتهاء الحركة لتخفيف العبء على المتصفح
+  setTimeout(() => {
+    if (element.parentNode) {
+      element.remove();
+    }
+  }, 7000);
+}
+
+// توليد عنصر جديد كل 1.2 ثانية
+setInterval(createFloatingElement, 1200);
+
+// 2. دالة إطفاء الشمعة وإطلاق الـ Confetti
+function extinguishCandle() {
+  const flame = document.getElementById('flame');
+  const status = document.getElementById('cake-status');
+
+  if (flame && !flame.classList.contains('extinguished')) {
+    // إخفاء اللهب
+    flame.classList.add('extinguished');
+
+    // تغيير نص التعليمات
+    if (status) {
+      status.innerHTML = '🎉 Happy Birthday Merna 🎂';
+    }
+
+    // إطلاق مفرقعات الـ Confetti
+    if (typeof confetti === 'function') {
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.5 }
+      });
+    }
+  }
+}

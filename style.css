@@ -142,6 +142,148 @@ body{
     color: blueviolet;
     margin: 0 4px;
 }
+#floating-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+.balloon, .floating-heart{
+    position: absolute;
+    bottom: -100px;
+    user-select: none;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: floatUp linear infinite;
+}
+.balloon{
+    width: 45px;
+    height: 60px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
+}
+.balloon::after{
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+@keyframes floatUp{
+    from{
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.9;
+    }
+    to{
+        transform: translateY(-115vh) rotate(20deg);
+        opacity: 0.1;
+    }
+}
+.cake-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 35px auto;
+    z-index: 2;
+    position: relative;
+}
+.cake{
+    position: relative;
+    width: 160px;
+    height: 120px;
+}
+.plate{
+    position: absolute;
+    bottom: -10px;
+    left: -20px;
+    width: 200px;
+    height: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.layer{
+    position: absolute;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+.layer-bottom{
+    height: 40px;
+    bottom: 0;
+    background-color: #ff85a1;
+}
+.layer-middle{
+    height: 35px;
+    bottom: 35px;
+    background-color: #ffb3c6;
+    width: 140px;
+    left: 10px;
+}
+.layer-top{
+    height: 30px;
+    bottom: 65px;
+    background-color: #c75271;
+    width: 120px;
+    left: 20px;
+}
+.candle{
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 40px;
+    background: linear-gradient(to bottom, #fff, #ffd1dc);
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 5;
+}
+.flame{
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 18px;
+    background-color: #ff9d00;
+    border-radius: 50% 50% 20% 20%;
+    box-shadow: 0 0 15px #ff9d00, 0 0 25px #ff0000;
+    animation: flicker 0.6s infinite alternate;
+}
+.flame.extinguished{
+    display: none;
+}
+@keyframes flicker{
+    0%{
+        transform: translateX(-50%);
+        scale: (1);
+    }
+    100%{
+        transform: translateX(-50%)
+        scale(1.15);
+        rotate: (2deg);
+    }
+}
+.cake-instruction{
+    margin-top: 25px;
+    font-size: 0.95rem;
+    color: #d63384;
+    font-weight: 600;
+    text-align: center;
+    background: rgba(172, 144, 144, 0.6);
+    padding: 6px 15px;
+    border-radius: 15px;
+}
+.fa-fire-flame-curved{
+    margin: 0 4px;
+}
 .wish-cards{
     display: flex;
     justify-content: center;
